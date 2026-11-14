@@ -1,0 +1,10 @@
+# dsh-token-heatmap 的 bundle patch：安装本包后自动挂载宿主半。
+# sessionsHome 留空 = 用默认根（$DSH_HOME/sessions 或 ~/.dsh/sessions）；
+# weeks = 热力图默认窗口（周），ttlMs = 扫描结果内存缓存时长。
+- insert:
+    - id: token-heatmap
+      name: dsh-token-heatmap
+      config:
+        sessionsHome: ""
+        weeks: 26
+        ttlMs: 15000
