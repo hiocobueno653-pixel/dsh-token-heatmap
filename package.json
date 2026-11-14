@@ -4,6 +4,19 @@
   "private": true,
   "type": "module",
   "description": "每日 Token 消耗热力图：六档深浅配色，点格子看当天用量明细（只读扫描本地会话日志）",
+  "license": "MIT",
+  "author": "hiocobueno653-pixel",
+  "homepage": "https://github.com/hiocobueno653-pixel/dsh-token-heatmap#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hiocobueno653-pixel/dsh-token-heatmap.git"
+  },
+  "keywords": [
+    "dsh-plugin",
+    "deepseek-harness",
+    "token-usage",
+    "heatmap"
+  ],
   "main": "./src/cordis.js",
   "exports": {
     ".": "./src/cordis.js",
