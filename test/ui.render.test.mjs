@@ -2692,7 +2692,7 @@ check('① 卡片位置：紧跟「模型用量」之后；标题「鲸元券」
 check('③ 票面是 <canvas> 1984×992，CSS 按 1984:992 比例铺满卡宽', voc.hasCanvas && voc.cw === 1984 && voc.ch === 992 && voc.cssW > 0 && Math.abs(voc.cssH / voc.cssW - 992 / 1984) <= 0.02, { cw: voc.cw, ch: voc.ch, cssW: voc.cssW, cssH: voc.cssH });
 const drawn = voc.draws.texts;
 const serialLine = drawn.find((t) => /^NO\./.test(t)) || '';
-check('⑥ 底图被画：drawImage 调用 1 次、参数 (image, 0, 0, 1984, 992)；面额千分位整数 + whale yuan + 印章红序列号行都画了', voc.draws.image === 1 && JSON.stringify(voc.draws.args) === JSON.stringify([[0, 0, 1984, 992]]) && drawn.includes(vfns.formatDenomination(VOC_FACE)) && drawn.includes('whale yuan') && new RegExp('^NO\\.\\d{9} \\d{4}-\\d{2}-\\d{2} - \\d{4}-\\d{2}-\\d{2}$').test(serialLine), { image: voc.draws.image, args: voc.draws.args, texts: drawn.slice(0, 12), serialLine });
+check('⑥ 底图被画：drawImage 调用 1 次、参数 (image, 0, 0, 1984, 992)；面额 = 千分位 token 数 + 单位 token + 印章红序列号行都画了', voc.draws.image === 1 && JSON.stringify(voc.draws.args) === JSON.stringify([[0, 0, 1984, 992]]) && drawn.includes(vfns.formatDenomination(VOC_TOTAL)) && drawn.includes('token') && new RegExp('^NO\\.\\d{9} +\\d{4}-\\d{2}-\\d{2} — \\d{4}-\\d{2}-\\d{2}$').test(serialLine), { image: voc.draws.image, args: voc.draws.args, texts: drawn.slice(0, 12), serialLine });
 check('③ 票面文本零中文（/\\u4e00-\\u9fa5/ 扫 canvas 实际绘制文本 0 命中）', !drawn.some((t) => /[\u4e00-\u9fa5]/.test(t)), drawn);
 check('④ 默认环境（无 navigator.canShare）不渲染分享按钮，只渲染「保存图片」', voc.buttons.length === 1 && voc.buttons[0] === '保存图片', voc.buttons);
 
